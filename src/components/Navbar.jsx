@@ -1,45 +1,51 @@
-import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActiveClass = () => {
+    setIsActive(!isActive);
+  };
+
+  const removeActive = () => {
+    setIsActive(false);
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container align-item-center">
-        <a className="navbar-brand" href="#">
-          Biblioteca
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" href="#">
+    <div className="App">
+      <header className="App-header">
+        <nav className="navbar backgorund-info">
+          <Link to="/" className="logo" onClick={removeActive}>
+            Library
+          </Link>
+          <ul className={`navMenu ${isActive ? "active" : ""}`}>
+            <li onClick={removeActive}>
+              <Link to="/" className="navLink">
                 Inicio
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
+            <li onClick={removeActive}>
+              <Link to="/libros" className="navLink">
+                Libros
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
+            <li onClick={removeActive}>
+              <Link to="/admin" className="navLink">
+                Admin
+              </Link>
             </li>
-            
+            <li onClick={removeActive}>
+              <Link to="/contacto" className="navLink">
+                Logout
+              </Link>
+            </li>
           </ul>
-        </div>
-      </div>
-    </nav>
+          <div className={`hamburger ${isActive ? "active" : ""}`} onClick={toggleActiveClass}></div>
+        </nav>
+      </header>
+    </div>
   );
 };
 

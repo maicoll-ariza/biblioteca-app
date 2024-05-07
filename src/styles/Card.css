@@ -1,0 +1,55 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.card-portada {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card-portada img {
+  width: auto;
+  height: 250px;
+  object-fit: cover;
+}
+
+.libro-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.libro-autor {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
+  margin: 5px 0 20px;
+}
+
+.libro-detalle {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
+  margin: 5px 0 20px;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+textarea {
+  padding-top: 20px;
+}

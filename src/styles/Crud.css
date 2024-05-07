@@ -1,0 +1,49 @@
+.form.form-libro {
+  flex-direction: row;
+  max-width: 800px;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 4%;
+  padding: 10px 2rem;
+}
+h2.titulo-form {
+  text-align: center;
+  margin: 2rem 0 0;
+}
+
+.input-container.libro {
+  flex: 1 0 48%;
+}
+.input-container.libro:nth-child(n+3) {
+  flex-basis: 100%;
+}
+.input-container.container-image {
+  height: auto;
+}
+
+.input-container.container-image img {
+  height: 100%;
+  max-height: 280px;
+  width: auto;
+  margin: 0.5rem 0;
+  object-fit: cover;
+}
+
+textarea, .input-container.libro {
+  max-width: none;
+}
+.input-container.libro:last-of-type {
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 20px;
+  align-items: center;
+}
+@media (max-width: 720px) {
+  .input-container.libro {
+    flex-basis: 100%;
+    max-width: 380px;
+  }
+  .detail {
+    display: none;
+  }
+}

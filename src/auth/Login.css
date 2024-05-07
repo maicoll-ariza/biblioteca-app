@@ -1,0 +1,186 @@
+.container-page {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.form,
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.input-container,
+.input,
+textarea {
+  width: 100%;
+  max-width: 380px;
+}
+
+.detail,
+.form {
+  flex: 1;
+}
+
+.detail {
+  max-width: 490px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.header-detail {
+  display: flex;
+  column-gap: 0.6rem;
+  align-self: center;
+}
+
+.body-detail {
+  max-width: 230px;
+}
+
+.paragraph-detail {
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: 300;
+}
+.input,
+textarea {
+  max-width: 380px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid #ccc;
+  padding: 10px 10px 0px 10px;
+  box-shadow: -3px 3px 46px -4px rgba(222, 222, 222, 0.75);
+  -webkit-box-shadow: -3px 3px 46px -4px rgba(222, 222, 222, 0.75);
+  -moz-box-shadow: -3px 3px 46px -4px rgba(222, 222, 222, 0.75);
+}
+
+.input-container {
+  position: relative;
+  height: 95px;
+}
+
+.label {
+  position: absolute;
+  left: 3.5%;
+  color: #929292;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  bottom: 55px;
+  align-self: flex-start;
+  margin: 0;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label,
+textarea:focus + .label,
+textarea:not(:placeholder-shown) + .label {
+  transform: translateY(-14px);
+  font-size: 10px;
+  background-color: transparent;
+}
+.alert-error-message {
+  font-size: 15px;
+}
+.error-message {
+  font-size: 10px;
+  align-self: flex-start;
+}
+
+.alert-error-message,
+.error-message {
+  color: red;
+  margin: 2px;
+}
+
+.btn-primary {
+  background-color: #009fc6;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 7px 15px;
+  margin: 15px 0;
+  position: relative;
+}
+
+.btn-secondary {
+  background-color: #f7f7f7;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.7rem;
+  padding: 7px 15px;
+  min-width: 117.19px;
+  border: 1px solid #bebebe;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+}
+
+@media (max-width: 720px) {
+  .container-page {
+  align-items: normal;
+  padding-top: 80px;
+  }
+  .detail {
+    display: none;
+  }
+}
+
+.fa-book-open-reader:before,
+.title-detail,
+.paragraph-detail {
+  color: white;
+}
+
+.title-detail {
+  margin-top: -6px;
+}
+
+.password-icon {
+  position: absolute;
+  bottom: 53px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.loader {
+  display: inline-block;
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #514b82;
+  animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
+}
+@keyframes l20-1{
+   0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+   12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+   25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+   50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+   75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+   100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+@keyframes l20-2{ 
+  0%    {transform:scaleY(1)  rotate(0deg)}
+  49.99%{transform:scaleY(1)  rotate(135deg)}
+  50%   {transform:scaleY(-1) rotate(0deg)}
+  100%  {transform:scaleY(-1) rotate(-135deg)}
+}
