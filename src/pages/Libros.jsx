@@ -81,6 +81,28 @@ const Libros = () => {
     }
   };
 
+  const agregarFavorito = async (libro) => {
+    try {
+      const request = {
+        libro: libro._id,
+        usuario: usuario.uid,
+      };
+      const { data } = await axios.post(
+        `http://localhost:3050/api/favorito/modificar`,
+        request
+      );
+      if (data.ok) {
+        obtenerLibros();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data.message,
+        showConfirmButton: true,
+      });
+    }
+  };
+
   return (
     <div className="container-libro">
       <input type="checkbox" id="toggle" className="toggle" />
@@ -98,6 +120,7 @@ const Libros = () => {
             libro={libro}
             seleccionarLibro={seleccionarLibro}
             modificarReserva={modificarReserva}
+            agregarFavorito={agregarFavorito}
           />
         ))}
       </div>

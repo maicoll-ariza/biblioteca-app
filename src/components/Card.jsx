@@ -1,16 +1,20 @@
 import PropTypes from "prop-types";
 import "../styles/Card.css";
-const Card = ({ libro, seleccionarLibro, modificarReserva }) => {
+const Card = ({ libro, seleccionarLibro, modificarReserva, agregarFavorito }) => {
   return (
     <div className="card" onClick={() => seleccionarLibro(libro)}>
       <div className="card-portada">
-        <img src={libro.portada} alt={`Portada libro ${libro.titulo}`} />
-
+        <button onClick={() => agregarFavorito(libro)} className={ `btn-nobg ${libro.esFavorito &&  "active"}` }>
+          <i className="fa-solid fa-star"></i>
+        </button>
+        <img src={libro.portada} alt={`Portada libro-${libro.titulo}`} />
       </div>
       <div className="info">
         <h3 className="libro-titulo">{libro.titulo}</h3>
         <span className="libro-autor">{libro.autor}</span>
-        <p className="libro-detalle" title={libro.sipnosis}>{libro.sipnosis}</p>
+        <p className="libro-detalle" title={libro.sipnosis}>
+          {libro.sipnosis}
+        </p>
       </div>
       <div className="actions">
         <button
@@ -47,9 +51,11 @@ Card.propTypes = {
     sipnosis: PropTypes.string.isRequired,
     disponible: PropTypes.bool.isRequired,
     reservadoPorUsuario: PropTypes.bool.isRequired,
+    esFavorito: PropTypes.bool.isRequired,
   }).isRequired,
   seleccionarLibro: PropTypes.func.isRequired,
   modificarReserva: PropTypes.func.isRequired,
+  agregarFavorito: PropTypes.func.isRequired,
 };
 
 export default Card;

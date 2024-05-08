@@ -66,9 +66,7 @@ const Crud = ({ libro, getLibros }) => {
         Swal.fire({
           icon: "success",
           title: data.message,
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
+          showConfirmButton: true,
         });
       }
     } catch (error) {
@@ -76,9 +74,7 @@ const Crud = ({ libro, getLibros }) => {
         icon: "error",
         title: "Error al guardar el libro",
         text: error.response.data.message,
-        showConfirmButton: false,
-        timer: 2500,
-        timerProgressBar: true,
+        showConfirmButton: true,
       });
     }
   };
@@ -101,9 +97,7 @@ const Crud = ({ libro, getLibros }) => {
         Swal.fire({
           icon: "success",
           title: data.message,
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
+          showConfirmButton: true,
         });
       }
     } catch (error) {
@@ -111,9 +105,7 @@ const Crud = ({ libro, getLibros }) => {
         icon: "error",
         title: "Error al modificar el libro",
         text: error.response.data.message,
-        showConfirmButton: false,
-        timer: 2500,
-        timerProgressBar: true,
+        showConfirmButton: true,
       });
     }
   };
@@ -132,9 +124,7 @@ const Crud = ({ libro, getLibros }) => {
         Swal.fire({
           icon: "success",
           title: data.message,
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
+          showConfirmButton: true,
         });
       }
     } catch (error) {
@@ -142,9 +132,7 @@ const Crud = ({ libro, getLibros }) => {
         icon: "error",
         title: "Error al eliminar el libro",
         text: error.response.data.message,
-        showConfirmButton: false,
-        timer: 2500,
-        timerProgressBar: true,
+        showConfirmButton: true,
       });
     }
   };
@@ -276,8 +264,6 @@ const Crud = ({ libro, getLibros }) => {
       "state_changed",
       () => {
         setIsLoading(true);
-        // const porcentaje =
-        //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       },
       () => {
         setIsLoading(false);

@@ -16,6 +16,16 @@
   justify-content: center;
 }
 
+.card-portada .btn-nobg {
+  position: absolute;
+  right: 0;
+  background-color: transparent;
+  font-size: 20px;
+  transition: 1s all;
+  color: #5f5050;
+  border: none;
+}
+
 .card-portada img {
   width: auto;
   height: 250px;
@@ -53,3 +63,9 @@
 textarea {
   padding-top: 20px;
 }
+
+.btn-nobg.active {
+  color: #ffa400;
+  transform: rotate(360deg);
+}
+
