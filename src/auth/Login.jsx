@@ -104,7 +104,7 @@ const Login = () => {
       setEmail("");
       setPass("");
       setError(null);
-      navigate("/admin");
+      navigate("/libros");
     } catch (error) {
       setIsLoading(false);
       if (error.code === "auth/internal-error")

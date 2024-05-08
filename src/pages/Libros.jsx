@@ -5,7 +5,14 @@ import "../styles/Libros.css";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Swal from "sweetalert2";
+
+import ImageNoData from "../assets/icons/no-data.svg";
+
 const Libros = () => {
+  // #region Buscador
+  const [texto, setTexto] = useState("");
+  const [textoDebounce, setTextoDebounce] = useState("");
+  // #endregion
   const [usuario, setUsuario] = useState({ uid: "", email: "" });
   const [libros, setLibros] = useState([]);
   const [libroSeleccionado, setLibroSeleccionado] = useState({
@@ -17,6 +24,10 @@ const Libros = () => {
     disponible: false,
     reservadoPorUsuario: false,
   });
+
+  // #region validaciones
+  const [isAdmin, setIsAdmin] = useState(false);
+  // #endregion
 
   const obtenerLibros = async () => {
     try {
@@ -37,7 +48,15 @@ const Libros = () => {
 
   useEffect(() => {
     obtenerLibros();
+    validarAdmin();
   }, []);
+
+  const validarAdmin = () => {
+    const email = localStorage.getItem("email");
+    if (email === "maicoll.ariza.c@gmail.com") {
+      setIsAdmin(true);
+    }
+  };
 
   const actualizarListadoLibros = async () => {
     obtenerLibros();
@@ -103,26 +122,78 @@ const Libros = () => {
     }
   };
 
+  // #region Buscador
+  useEffect(() => {
+    const manejador = setTimeout(() => {
+      setTextoDebounce(texto);
+    }, 1000);
+
+    return () => {
+      clearTimeout(manejador);
+    };
+  }, [texto]);
+
+  useEffect(() => {
+    buscarLibros();
+    console.log("El usuario ha dejado de escribir: ", textoDebounce);
+  }, [textoDebounce]);
+
+  const buscarLibros = async () => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3050/api/general/libros`,
+        { usuario: usuario.uid, autor: textoDebounce, titulo: textoDebounce }
+      );
+      if (data.ok) {
+        setLibros(data.listadoLibrosInfo);
+      }
+    } catch (error) {
+      console.log("error:", error);
+    }
+  };
+
+  // #endregion
+
   return (
     <div className="container-libro">
-      <input type="checkbox" id="toggle" className="toggle" />
-      <label htmlFor="toggle" className="labelToggle">
-        Gestionar libro
-      </label>
-      <div className="content">
-        <Crud libro={libroSeleccionado} getLibros={actualizarListadoLibros} />
+      {isAdmin && (
+        <>
+          <input type="checkbox" id="toggle" className="toggle" />
+          <label htmlFor="toggle" className="labelToggle">
+            Gestionar libro
+          </label>
+          <div className="content">
+            <Crud
+              libro={libroSeleccionado}
+              getLibros={actualizarListadoLibros}
+            />
+          </div>
+        </>
+      )}
+      <div className="container-buscador">
+        <input
+          type="text"
+          className="input-buscador input"
+          placeholder="Buscar libro por autor o título"
+          onChange={(e) => setTexto(e.target.value)}
+        />
       </div>
-
       <div className="container-listado-libro">
-        {libros.map((libro) => (
-          <Card
-            key={libro._id}
-            libro={libro}
-            seleccionarLibro={seleccionarLibro}
-            modificarReserva={modificarReserva}
-            agregarFavorito={agregarFavorito}
-          />
-        ))}
+        {libros.length > 0 ? (
+          libros.map((libro) => (
+            <Card
+              key={libro._id}
+              libro={libro}
+              seleccionarLibro={seleccionarLibro}
+              modificarReserva={modificarReserva}
+              agregarFavorito={agregarFavorito}
+            />
+          ))
+        ) : (
+          <div className="container-nodata">
+            <img src={ImageNoData} alt="Ilustracion" />
+          </div>
+        )}
       </div>
     </div>
   );
