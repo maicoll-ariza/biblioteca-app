@@ -135,7 +135,6 @@ const Libros = () => {
 
   useEffect(() => {
     buscarLibros();
-    console.log("El usuario ha dejado de escribir: ", textoDebounce);
   }, [textoDebounce]);
 
   const buscarLibros = async () => {

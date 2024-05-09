@@ -315,7 +315,7 @@ const Crud = ({ libro, getLibros }) => {
         </button>
       </div>
       <h2 className="titulo-form">{isEditing ? "Editar" : "Nuevo"} libro</h2>
-      <form onSubmit={guardarDatos} className="form form-libro">
+      <form onSubmit={guardarDatos} className="form form-libro" autoComplete="off">
         <div className="input-container libro">
           <input
             type="text"

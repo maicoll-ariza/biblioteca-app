@@ -82,10 +82,12 @@ const Login = () => {
       const { user } = await auth.createUserWithEmailAndPassword(email, pass);
       setIsLoading(false);
       setItemsOnLocalStorage(user);
-      navigate("/admin");
+      navigate("/libros");
       setEmail("");
       setPass("");
       setError("");
+      location.reload();
+
     } catch (error) {
       setIsLoading(false);
       if (error.code === "auth/email-already-in-use")
@@ -105,6 +107,7 @@ const Login = () => {
       setPass("");
       setError(null);
       navigate("/libros");
+      location.reload();
     } catch (error) {
       setIsLoading(false);
       if (error.code === "auth/internal-error")
