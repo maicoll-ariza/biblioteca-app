@@ -52,7 +52,7 @@ const Crud = ({ libro, getLibros }) => {
   const crearLibro = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3050/api/general/libros/crear`,
+        `https://server-biblioteca.onrender.com/api/general/libros/crear`,
         {
           titulo,
           autor,
@@ -82,7 +82,7 @@ const Crud = ({ libro, getLibros }) => {
   const editarLibro = async () => {
     try {
       const { data } = await axios.put(
-        `http://localhost:3050/api/general/libros/actualizar`,
+        `https://server-biblioteca.onrender.com/api/general/libros/actualizar`,
         {
           titulo,
           autor,
@@ -113,7 +113,7 @@ const Crud = ({ libro, getLibros }) => {
   const eliminarLibro = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3050/api/general/libros/eliminar`,
+        `https://server-biblioteca.onrender.com/api/general/libros/eliminar`,
         {
           id: idLibro,
         }
